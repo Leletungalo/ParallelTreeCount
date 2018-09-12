@@ -1,24 +1,26 @@
 
-import java.util.Scanner;
+import java.util.ArrayList;
 import java.util.concurrent.RecursiveTask;
 
-public class thread extends RecursiveTask<Integer> {
+public class thread extends RecursiveTask<Double> {
     private int lo; // arguments
     private int hi;
     private int[][] arr;
     private static final int SEQUENTIAL_CUTOFF = 500;
-    private Scanner scan;
-    int ans = 0; // result
+    ArrayList<Double> totalForTree;
+    //static ArrayList<Double> newList;
+    //int ans = 0; // result
 
     public thread(int[][] a, int l, int h) {
         lo=l; hi=h; arr=a;
     }
 
 
-    protected Integer compute(){// return answer - instead of run
+    protected Double compute(){// return answer - instead of run
         if((hi-lo) < SEQUENTIAL_CUTOFF) {
             float[][] dataaa = readData.data;
-            int ans = 0;
+            Double ans = 0.0;
+            totalForTree = new ArrayList<>();
             for(int i=lo; i < hi; i++){
                 int xOfTree = arr[i][0];
                 int yOfTree = arr[i][1];
@@ -39,6 +41,7 @@ public class thread extends RecursiveTask<Integer> {
                     xOfTree = xr + 1;
                     xr++;
                 }
+                totalForTree.add(ans);
                 //total for tree will here
             }
             return ans;
@@ -50,8 +53,11 @@ public class thread extends RecursiveTask<Integer> {
             // order of next 4 lines
             // essential – why?
             left.fork();
-            int rightAns = right.compute();
-            int leftAns  = left.join();
+            Double rightAns = right.compute();
+            Double leftAns  = left.join();
+         /*   newlist = new ArrayList<Double>();
+            newlist.addAll(left.totalForTree);
+            newlist.addAll(right.totalForTree);*/
             return leftAns + rightAns;
         }
     }

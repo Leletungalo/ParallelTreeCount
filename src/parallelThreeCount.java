@@ -12,7 +12,7 @@ public class parallelThreeCount {
         return (System.currentTimeMillis() - startTime) / 1000.0f;
     }
     static final ForkJoinPool fjPool = new ForkJoinPool();
-    static float sum(int[][] arr){
+    static double sum(int[][] arr){
         return fjPool.invoke(new thread(arr,0,arr.length));
     }
 
@@ -20,8 +20,9 @@ public class parallelThreeCount {
 
         tick();
         readData data = new readData("sample_input.txt");
-        float fofof = sum(data.getTreesLocation());
+        double fofof = sum(data.getTreesLocation());
         float huhu = tock();
+
 
         System.out.println("Time is: " + huhu);
         System.out.println("Answer is: " + fofof/1000000);
@@ -29,7 +30,7 @@ public class parallelThreeCount {
 
         tick();
         readData data1 = new readData("sample_input.txt");
-        float gga = sum(data1.getTreesLocation());
+        double gga = sum(data1.getTreesLocation());
         float huhu1 = tock();
 
         System.out.println("Time is 1 : " + huhu1);
@@ -39,7 +40,7 @@ public class parallelThreeCount {
 
         tick();
         readData data2 = new readData("sample_input.txt");
-        float ueue = sum(data2.getTreesLocation());
+        double ueue = sum(data2.getTreesLocation());
         float huhu2 = tock();
 
         System.out.println("Time is 2 : " + huhu2);
@@ -48,7 +49,7 @@ public class parallelThreeCount {
 
         tick();
         readData data3 = new readData("sample_input.txt");
-        float oaoa = sum(data3.getTreesLocation());
+        double oaoa = sum(data3.getTreesLocation());
         float huhu3 = tock();
 
         System.out.println("Time is 3 : " + huhu3);
@@ -58,7 +59,7 @@ public class parallelThreeCount {
 
         tick();
         readData data4 = new readData("sample_input.txt");
-        float uua = sum(data4.getTreesLocation());
+        double uua = sum(data4.getTreesLocation());
         float huhu4 = tock();
 
         System.out.println("Time is 4 : " + huhu);
@@ -67,12 +68,16 @@ public class parallelThreeCount {
 
         tick();
         readData data5 = new readData("sample_input.txt");
-        float nun = sum(data5.getTreesLocation());
+        double nun = sum(data5.getTreesLocation());
         float huhu5 = tock();
 
         System.out.println("Time is 5 : " + huhu5 );
         System.out.println("Answer is: " + nun/1000000);
         System.out.println();
+
+     /*   for (int i = 0; i < 1000;i++){
+           System.out.println(thread.newlist.get(i));
+        }*/
 
     }
 }
