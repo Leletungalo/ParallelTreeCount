@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.concurrent.ForkJoinPool;
 
 public class parallelThreeCount {
@@ -12,7 +13,7 @@ public class parallelThreeCount {
         return (System.currentTimeMillis() - startTime) / 1000.0f;
     }
     static final ForkJoinPool fjPool = new ForkJoinPool();
-    static double sum(int[][] arr){
+    static ArrayList<Double> sum(int[][] arr){
         return fjPool.invoke(new thread(arr,0,arr.length));
     }
 
@@ -20,15 +21,18 @@ public class parallelThreeCount {
 
         tick();
         readData data = new readData("sample_input.txt");
-        double fofof = sum(data.getTreesLocation());
+        ArrayList<Double> fofof = sum(data.getTreesLocation());
         float huhu = tock();
 
 
         System.out.println("Time is: " + huhu);
-        System.out.println("Answer is: " + fofof/1000000);
+        for (int i = 0; i < 1000;i++){
+            System.out.println(fofof.get(i));
+        }
+        //System.out.println("Answer is: "  /*fofof/1000000*/);
         System.out.println();
 
-        tick();
+        /*tick();
         readData data1 = new readData("sample_input.txt");
         double gga = sum(data1.getTreesLocation());
         float huhu1 = tock();

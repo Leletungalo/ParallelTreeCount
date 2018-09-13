@@ -2,7 +2,7 @@
 import java.util.ArrayList;
 import java.util.concurrent.RecursiveTask;
 
-public class thread extends RecursiveTask<Double> {
+public class thread extends RecursiveTask<ArrayList<Double>> {
     private int lo; // arguments
     private int hi;
     private int[][] arr;
@@ -16,7 +16,7 @@ public class thread extends RecursiveTask<Double> {
     }
 
 
-    protected Double compute(){// return answer - instead of run
+    protected ArrayList<Double> compute(){// return answer - instead of run
         if((hi-lo) < SEQUENTIAL_CUTOFF) {
             float[][] dataaa = readData.data;
             Double ans = 0.0;
@@ -28,11 +28,13 @@ public class thread extends RecursiveTask<Double> {
 
                 int xr = xOfTree;
                 int yr = yOfTree;
+                Double totalForOneTree = 0.0;
 
                 for (int z = 0 ; z < lengthOfTree; z++) {
                     try {
                         for (int l = 0; l < lengthOfTree ;l++){
                         float sss = dataaa[xOfTree][yOfTree];
+                        totalForOneTree += sss;
                         ans += sss;
                         yOfTree++;}
                     }catch (ArrayIndexOutOfBoundsException e){}
@@ -41,10 +43,11 @@ public class thread extends RecursiveTask<Double> {
                     xOfTree = xr + 1;
                     xr++;
                 }
-                totalForTree.add(ans);
+                totalForTree.add(totalForOneTree);
                 //total for tree will here
             }
-            return ans;
+            totalForTree.add(ans);
+            return totalForTree;
         }
         else {
             thread left = new thread(arr,lo,(hi+lo)/2);
@@ -53,12 +56,19 @@ public class thread extends RecursiveTask<Double> {
             // order of next 4 lines
             // essential – why?
             left.fork();
-            Double rightAns = right.compute();
-            Double leftAns  = left.join();
-         /*   newlist = new ArrayList<Double>();
-            newlist.addAll(left.totalForTree);
-            newlist.addAll(right.totalForTree);*/
-            return leftAns + rightAns;
+            ArrayList<Double> rightAns = right.compute();
+            ArrayList<Double> leftAns  = left.join();
+            ArrayList<Double>  newlist = new ArrayList<>();
+            //add last element and delete it
+            double leftAnswer = leftAns.get(leftAns.size() -1);
+            double rightAnswer = rightAns.get(rightAns.size()-1);
+            leftAns.remove(leftAns.size()-1);
+            rightAns.remove(rightAns.size()-1);
+            newlist.addAll(leftAns);
+            newlist.addAll(rightAns);
+            newlist.add(leftAnswer + rightAnswer);
+            //return leftAns + rightAns;
+            return newlist;
         }
     }
 }
