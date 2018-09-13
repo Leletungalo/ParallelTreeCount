@@ -6,13 +6,14 @@ public class thread extends RecursiveTask<ArrayList<Double>> {
     private int lo; // arguments
     private int hi;
     private int[][] arr;
-    private static final int SEQUENTIAL_CUTOFF = 500;
+    private static final int SEQUENTIAL_CUTOFF = 100;
     ArrayList<Double> totalForTree;
-    //static ArrayList<Double> newList;
+    Total total;
     //int ans = 0; // result
 
     public thread(int[][] a, int l, int h) {
         lo=l; hi=h; arr=a;
+       total = new Total();
     }
 
 
@@ -43,11 +44,12 @@ public class thread extends RecursiveTask<ArrayList<Double>> {
                     xOfTree = xr + 1;
                     xr++;
                 }
-                totalForTree.add(totalForOneTree);
+                total.setNewList(totalForOneTree);
+                //totalForTree.add(totalForOneTree);
                 //total for tree will here
             }
             totalForTree.add(ans);
-            return totalForTree;
+            return total.getNewList();
         }
         else {
             thread left = new thread(arr,lo,(hi+lo)/2);
@@ -58,17 +60,22 @@ public class thread extends RecursiveTask<ArrayList<Double>> {
             left.fork();
             ArrayList<Double> rightAns = right.compute();
             ArrayList<Double> leftAns  = left.join();
-            ArrayList<Double>  newlist = new ArrayList<>();
+
+            //Total.newList.addAll(leftAns);
+            //Total.newList.addAll(rightAns);
+           //Total.setNewList(leftAns,rightAns);
+
+            /*ArrayList<Double>  newlist = new ArrayList<>();
             //add last element and delete it
-            double leftAnswer = leftAns.get(leftAns.size() -1);
+           /* double leftAnswer = leftAns.get(leftAns.size() -1);
             double rightAnswer = rightAns.get(rightAns.size()-1);
             leftAns.remove(leftAns.size()-1);
             rightAns.remove(rightAns.size()-1);
             newlist.addAll(leftAns);
-            newlist.addAll(rightAns);
-            newlist.add(leftAnswer + rightAnswer);
+            newlist.addAll(rightAns);*/
+            //newlist.add(leftAnswer + rightAnswer);*/
             //return leftAns + rightAns;
-            return newlist;
+           return null;
         }
     }
 }

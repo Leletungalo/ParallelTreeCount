@@ -1,4 +1,6 @@
+import java.io.*;
 import java.util.ArrayList;
+import java.util.Scanner;
 import java.util.concurrent.ForkJoinPool;
 
 public class parallelThreeCount {
@@ -19,16 +21,38 @@ public class parallelThreeCount {
 
     public static void main(String [] agrs){
 
-        tick();
-        readData data = new readData("sample_input.txt");
-        ArrayList<Double> fofof = sum(data.getTreesLocation());
-        float huhu = tock();
+        //if (agrs.length > 0) {
+            tick();
+            readData data = new readData("sample_input.txt");
+            ArrayList<Double> fofof = sum(data.getTreesLocation());
+            float huhu = tock();
+
+            File file = new File("sample_out.txt");
+            try {
+                BufferedWriter out = new  BufferedWriter( new FileWriter(file));
+                Total total = new Total();
+                for (int i = 0; i < 1000; i++) {
+                    double gg = total.getNewList().get(i);
+                    //double gg = fofof.get(i);
+                    System.out.println(gg);
+                   out.write(String.valueOf(gg));
+                   out.newLine();
+                   out.flush();
+                  // out.newLine();
+                }
 
 
-        System.out.println("Time is: " + huhu);
-        for (int i = 0; i < 1000;i++){
-            System.out.println(fofof.get(i));
-        }
+                out.close();
+            }catch (IOException e) {
+                e.printStackTrace();
+            }
+
+
+            System.out.println("Time is: " + huhu);
+
+      /*  }else {
+            System.out.println("No file entered");
+        }*/
         //System.out.println("Answer is: "  /*fofof/1000000*/);
         System.out.println();
 
