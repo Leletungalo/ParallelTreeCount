@@ -3,13 +3,12 @@ import java.util.ArrayList;
 import java.util.concurrent.RecursiveTask;
 
 public class thread extends RecursiveTask<ArrayList<Double>> {
-    private int lo; // arguments
+    private int lo;
     private int hi;
     private int[][] arr;
     private static final int SEQUENTIAL_CUTOFF = 100;
-    ArrayList<Double> totalForTree;
-    Total total;
-    //int ans = 0; // result
+    private ArrayList<Double> totalForTree;
+    private Total total;
 
     public thread(int[][] a, int l, int h) {
         lo=l; hi=h; arr=a;
@@ -45,10 +44,7 @@ public class thread extends RecursiveTask<ArrayList<Double>> {
                     xr++;
                 }
                 total.setNewList(totalForOneTree);
-                //totalForTree.add(totalForOneTree);
-                //total for tree will here
             }
-            totalForTree.add(ans);
             return total.getNewList();
         }
         else {
@@ -61,7 +57,6 @@ public class thread extends RecursiveTask<ArrayList<Double>> {
             ArrayList<Double> rightAns = right.compute();
             ArrayList<Double> leftAns  = left.join();
             total.addList(leftAns,rightAns);
-            //return leftAns + rightAns;
            return total.getNewList();
         }
     }

@@ -1,6 +1,5 @@
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class readData {
@@ -28,8 +27,6 @@ public class readData {
             treesLocation = new int[numberOfTrees][3];
             scan.nextLine();
 
-           // new thread(scan);
-
             int xOfTree;
             int yOfTree;
             int lengthOfTree;
@@ -44,19 +41,13 @@ public class readData {
                 treesLocation[i] = arr;
                 scan.nextLine();
             }
-            //System.out.println(treesLocation[1][0]+ " " + treesLocation[1][1] + " " + treesLocation[1][2]);
-
         }catch (FileNotFoundException e){
-
+            System.out.println("file not found");
+            e.getStackTrace();
         }
-    }
-
-    public float[][] getData() {
-        return data;
     }
 
     public int[][] getTreesLocation() {
         return treesLocation;
     }
-
 }

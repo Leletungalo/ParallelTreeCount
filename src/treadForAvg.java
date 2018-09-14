@@ -2,12 +2,10 @@ import java.util.ArrayList;
 import java.util.concurrent.RecursiveTask;
 
 public class treadForAvg extends RecursiveTask<Double> {
-    int lo; // arguments
-    int hi;
-    ArrayList<Double> arr;
-    static final int SEQUENTIAL_CUTOFF=500;
-
-    int ans = 0; // result
+    private int lo;
+    private int hi;
+    private ArrayList<Double> arr;
+    private static final int SEQUENTIAL_CUTOFF = 500;
 
     treadForAvg(ArrayList<Double> a, int l, int h) {
         lo=l; hi=h; arr=a;

@@ -1,11 +1,8 @@
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Scanner;
 import java.util.concurrent.ForkJoinPool;
 
 public class parallelThreeCount {
-
-    parallelThreeCount(){}
     private static long startTime = 0;
 
     private static void tick(){
@@ -14,16 +11,15 @@ public class parallelThreeCount {
     private static float tock(){
         return (System.currentTimeMillis() - startTime) / 1000.0f;
     }
-    static final ForkJoinPool fjPool = new ForkJoinPool();
-    static ArrayList<Double> sum(int[][] arr){
+    private static final ForkJoinPool fjPool = new ForkJoinPool();
+    private static ArrayList<Double> sum(int[][] arr){
         return fjPool.invoke(new thread(arr,0,arr.length));
     }
-     static Double sum2(ArrayList<Double> list){
+     private static Double sum2(ArrayList<Double> list){
         return fjPool.invoke(new treadForAvg(list,0,list.size()));
      }
 
     public static void main(String [] agrs){
-            double tot = 0.0;
         //if (agrs.length > 0) {
             tick();
             readData data = new readData("sample_input.txt");
@@ -36,16 +32,12 @@ public class parallelThreeCount {
             float time2 = tock();
             try {
                 BufferedWriter out = new  BufferedWriter( new FileWriter(file));
-                Total total = new Total();
-                for (int i = 0; i < fofof.size(); i++) {
-                    //double gg = total.getNewList().get(i);
-                    double gg = fofof.get(i);
-                    tot += gg;
+                for (Double aFofof : fofof) {
+                    double gg = aFofof;
                     System.out.println(gg);
-                   out.write(String.valueOf(gg));
-                   out.newLine();
-                   out.flush();
-                  // out.newLine();
+                    out.write(String.valueOf(gg));
+                    out.newLine();
+                    out.flush();
                 }
 
 
@@ -59,12 +51,7 @@ public class parallelThreeCount {
             System.out.println("Time is: " + huhu);
 
             System.out.println("Time 2 is"+drdr/1000000 +"\n" + time2);
-
-      /*  }else {
-            System.out.println("No file entered");
-        }*/
-        //System.out.println("Answer is: "  /*fofof/1000000*/);
-        System.out.println();
+            System.out.println();
 
         /*tick();
         readData data1 = new readData("sample_input.txt");
@@ -111,11 +98,7 @@ public class parallelThreeCount {
 
         System.out.println("Time is 5 : " + huhu5 );
         System.out.println("Answer is: " + nun/1000000);
-        System.out.println();
-
-     /*   for (int i = 0; i < 1000;i++){
-           System.out.println(thread.newlist.get(i));
-        }*/
+        System.out.println();*/
 
     }
 }

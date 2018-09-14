@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class  Total {
 
-    public  ArrayList<Double> newList;
+    private ArrayList<Double> newList;
     public  Total(){
         newList = new ArrayList<>();
     }
