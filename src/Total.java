@@ -14,4 +14,9 @@ public class  Total {
     public ArrayList<Double> getNewList() {
         return newList;
     }
+
+    public synchronized void addList(ArrayList<Double> list ,ArrayList<Double> list2){
+        newList.addAll(list);
+        newList.addAll(list2);
+    }
 }

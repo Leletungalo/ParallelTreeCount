@@ -20,7 +20,7 @@ public class parallelThreeCount {
     }
 
     public static void main(String [] agrs){
-
+            double tot = 0.0;
         //if (agrs.length > 0) {
             tick();
             readData data = new readData("sample_input.txt");
@@ -28,12 +28,14 @@ public class parallelThreeCount {
             float huhu = tock();
 
             File file = new File("sample_out.txt");
+            tick();
             try {
                 BufferedWriter out = new  BufferedWriter( new FileWriter(file));
                 Total total = new Total();
-                for (int i = 0; i < 1000; i++) {
-                    double gg = total.getNewList().get(i);
-                    //double gg = fofof.get(i);
+                for (int i = 0; i < fofof.size(); i++) {
+                    //double gg = total.getNewList().get(i);
+                    double gg = fofof.get(i);
+                    tot += gg;
                     System.out.println(gg);
                    out.write(String.valueOf(gg));
                    out.newLine();
@@ -49,6 +51,8 @@ public class parallelThreeCount {
 
 
             System.out.println("Time is: " + huhu);
+            float time2 = tock();
+            System.out.println("Time 2 is"+tot/1000000 +"\n" + time2);
 
       /*  }else {
             System.out.println("No file entered");

@@ -60,22 +60,9 @@ public class thread extends RecursiveTask<ArrayList<Double>> {
             left.fork();
             ArrayList<Double> rightAns = right.compute();
             ArrayList<Double> leftAns  = left.join();
-
-            //Total.newList.addAll(leftAns);
-            //Total.newList.addAll(rightAns);
-           //Total.setNewList(leftAns,rightAns);
-
-            /*ArrayList<Double>  newlist = new ArrayList<>();
-            //add last element and delete it
-           /* double leftAnswer = leftAns.get(leftAns.size() -1);
-            double rightAnswer = rightAns.get(rightAns.size()-1);
-            leftAns.remove(leftAns.size()-1);
-            rightAns.remove(rightAns.size()-1);
-            newlist.addAll(leftAns);
-            newlist.addAll(rightAns);*/
-            //newlist.add(leftAnswer + rightAnswer);*/
+            total.addList(leftAns,rightAns);
             //return leftAns + rightAns;
-           return null;
+           return total.getNewList();
         }
     }
 }
