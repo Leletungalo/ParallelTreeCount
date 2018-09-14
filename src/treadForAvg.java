@@ -1,23 +1,24 @@
+import java.util.ArrayList;
 import java.util.concurrent.RecursiveTask;
 
-public class treadForAvg extends RecursiveTask<Integer> {
+public class treadForAvg extends RecursiveTask<Double> {
     int lo; // arguments
     int hi;
-    int[] arr;
+    ArrayList<Double> arr;
     static final int SEQUENTIAL_CUTOFF=500;
 
     int ans = 0; // result
 
-    treadForAvg(int[] a, int l, int h) {
+    treadForAvg(ArrayList<Double> a, int l, int h) {
         lo=l; hi=h; arr=a;
     }
 
 
-    protected Integer compute(){// return answer - instead of run
+    protected Double compute(){// return answer - instead of run
         if((hi-lo) < SEQUENTIAL_CUTOFF) {
-            int ans = 0;
+            double ans = 0;
             for(int i=lo; i < hi; i++)
-                ans += arr[i];
+                ans += arr.get(i);
             return ans;
         }
         else {
@@ -27,8 +28,8 @@ public class treadForAvg extends RecursiveTask<Integer> {
             // order of next 4 lines
             // essential – why?
             left.fork();
-            int rightAns = right.compute();
-            int leftAns  = left.join();
+            double rightAns = right.compute();
+            double leftAns  = left.join();
             return leftAns + rightAns;
         }
     }

@@ -18,6 +18,9 @@ public class parallelThreeCount {
     static ArrayList<Double> sum(int[][] arr){
         return fjPool.invoke(new thread(arr,0,arr.length));
     }
+     static Double sum2(ArrayList<Double> list){
+        return fjPool.invoke(new treadForAvg(list,0,list.size()));
+     }
 
     public static void main(String [] agrs){
             double tot = 0.0;
@@ -29,6 +32,8 @@ public class parallelThreeCount {
 
             File file = new File("sample_out.txt");
             tick();
+            double drdr = sum2(fofof);
+            float time2 = tock();
             try {
                 BufferedWriter out = new  BufferedWriter( new FileWriter(file));
                 Total total = new Total();
@@ -50,9 +55,10 @@ public class parallelThreeCount {
             }
 
 
+
             System.out.println("Time is: " + huhu);
-            float time2 = tock();
-            System.out.println("Time 2 is"+tot/1000000 +"\n" + time2);
+
+            System.out.println("Time 2 is"+drdr/1000000 +"\n" + time2);
 
       /*  }else {
             System.out.println("No file entered");
