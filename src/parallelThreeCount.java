@@ -21,7 +21,8 @@ public class parallelThreeCount {
 
     public static void main(String [] agrs){
      //  if (agrs.length > 0) {
-        tick();
+        for (int u = 0; u < 10;u++) {
+            tick();
             readData data = new readData("sample_input.txt");
             ArrayList<Double> treeTotals = sum(data.getTreesLocation());
             float time1 = tock();
@@ -37,13 +38,13 @@ public class parallelThreeCount {
             try {
                 BufferedWriter out = new BufferedWriter(new FileWriter(file));
                 int treenum = readData.numberOfTrees;
-                out.write(String.valueOf(totalForAll/treenum));
+                out.write(String.valueOf(totalForAll / treenum));
                 out.newLine();
                 out.write(String.valueOf(treenum));
                 out.newLine();
                 for (Double treeTotal : treeTotals) {
                     double oneTotal = treeTotal;
-                   // System.out.println(oneTotal);
+                    // System.out.println(oneTotal);
                     out.write(String.valueOf(oneTotal));
                     out.newLine();
                 }
@@ -54,12 +55,16 @@ public class parallelThreeCount {
             }
 
             float time3 = tock();
-            System.out.println("Time 1 is: "+time1);
+            System.out.println("Time 1 is: " + time1);
 
             System.out.println("Time 2 is: " + time2);
 
             System.out.println("Time 3 is: " + time3);
 
+            System.out.println();
+            System.out.print("-----------------------------------------------------");
+            System.out.println();
+        }
       /*  }else {
             System.out.println("No file Entered");
         }*/

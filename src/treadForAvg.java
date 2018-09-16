@@ -12,7 +12,7 @@ public class treadForAvg extends RecursiveTask<Double> {
     }
 
 
-    protected Double compute(){// return answer - instead of run
+    protected Double compute(){
         if((hi-lo) < SEQUENTIAL_CUTOFF) {
             double ans = 0;
             for(int i=lo; i < hi; i++)
@@ -23,8 +23,6 @@ public class treadForAvg extends RecursiveTask<Double> {
             treadForAvg left = new treadForAvg(arr,lo,(hi+lo)/2);
             treadForAvg right= new treadForAvg(arr,(hi+lo)/2,hi);
 
-            // order of next 4 lines
-            // essential – why?
             left.fork();
             double rightAns = right.compute();
             double leftAns  = left.join();

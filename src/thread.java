@@ -7,7 +7,6 @@ public class thread extends RecursiveTask<ArrayList<Double>> {
     private int hi;
     private int[][] arr;
     private static final int SEQUENTIAL_CUTOFF = 500;
-    private ArrayList<Double> totalForTree;
     private Total total;
 
     public thread(int[][] a, int l, int h) {
@@ -16,11 +15,9 @@ public class thread extends RecursiveTask<ArrayList<Double>> {
     }
 
 
-    protected ArrayList<Double> compute(){// return answer - instead of run
+    protected ArrayList<Double> compute(){
         if((hi-lo) < SEQUENTIAL_CUTOFF) {
             float[][] dataaa = readData.data;
-            Double ans = 0.0;
-            totalForTree = new ArrayList<>();
             for(int i=lo; i < hi; i++){
                 int xOfTree = arr[i][0];
                 int yOfTree = arr[i][1];
@@ -35,7 +32,6 @@ public class thread extends RecursiveTask<ArrayList<Double>> {
                         for (int l = 0; l < lengthOfTree ;l++){
                         float sss = dataaa[xOfTree][yOfTree];
                         totalForOneTree += sss;
-                        ans += sss;
                         yOfTree++;}
                     }catch (ArrayIndexOutOfBoundsException e){}
 
@@ -51,8 +47,6 @@ public class thread extends RecursiveTask<ArrayList<Double>> {
             thread left = new thread(arr,lo,(hi+lo)/2);
             thread right= new thread(arr,(hi+lo)/2,hi);
 
-            // order of next 4 lines
-            // essential – why?
             left.fork();
             ArrayList<Double> rightAns = right.compute();
             ArrayList<Double> leftAns  = left.join();
