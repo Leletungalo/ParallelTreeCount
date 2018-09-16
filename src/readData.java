@@ -5,6 +5,7 @@ import java.util.Scanner;
 public class readData {
     public static float[][] data;
     private int[][] treesLocation;
+     public static int  numberOfTrees;
 
     public readData(String fileName){
         File file = new File(fileName);
@@ -23,7 +24,7 @@ public class readData {
             }
             scan.nextLine();
 
-            int numberOfTrees = scan.nextInt();
+            numberOfTrees = scan.nextInt();
             treesLocation = new int[numberOfTrees][3];
             scan.nextLine();
 

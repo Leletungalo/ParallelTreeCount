@@ -6,7 +6,7 @@ public class thread extends RecursiveTask<ArrayList<Double>> {
     private int lo;
     private int hi;
     private int[][] arr;
-    private static final int SEQUENTIAL_CUTOFF = 100;
+    private static final int SEQUENTIAL_CUTOFF = 500;
     private ArrayList<Double> totalForTree;
     private Total total;
 

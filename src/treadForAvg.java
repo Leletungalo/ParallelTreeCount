@@ -5,7 +5,7 @@ public class treadForAvg extends RecursiveTask<Double> {
     private int lo;
     private int hi;
     private ArrayList<Double> arr;
-    private static final int SEQUENTIAL_CUTOFF = 500;
+    private static final int SEQUENTIAL_CUTOFF = 1000;
 
     treadForAvg(ArrayList<Double> a, int l, int h) {
         lo=l; hi=h; arr=a;

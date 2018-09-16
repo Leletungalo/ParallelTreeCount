@@ -20,85 +20,48 @@ public class parallelThreeCount {
      }
 
     public static void main(String [] agrs){
-        //if (agrs.length > 0) {
-            tick();
+     //  if (agrs.length > 0) {
+        tick();
             readData data = new readData("sample_input.txt");
-            ArrayList<Double> fofof = sum(data.getTreesLocation());
-            float huhu = tock();
+            ArrayList<Double> treeTotals = sum(data.getTreesLocation());
+            float time1 = tock();
 
-            File file = new File("sample_out.txt");
             tick();
-            double drdr = sum2(fofof);
+            double totalForAll = sum2(treeTotals);
             float time2 = tock();
+
+            tick();
+            File file = new File("sample_out.txt");
+
+
             try {
-                BufferedWriter out = new  BufferedWriter( new FileWriter(file));
-                for (Double aFofof : fofof) {
-                    double gg = aFofof;
-                    System.out.println(gg);
-                    out.write(String.valueOf(gg));
+                BufferedWriter out = new BufferedWriter(new FileWriter(file));
+                int treenum = readData.numberOfTrees;
+                out.write(String.valueOf(totalForAll/treenum));
+                out.newLine();
+                out.write(String.valueOf(treenum));
+                out.newLine();
+                for (Double treeTotal : treeTotals) {
+                    double oneTotal = treeTotal;
+                   // System.out.println(oneTotal);
+                    out.write(String.valueOf(oneTotal));
                     out.newLine();
-                    out.flush();
                 }
-
-
+                out.flush();
                 out.close();
-            }catch (IOException e) {
+            } catch (IOException e) {
                 e.printStackTrace();
             }
 
+            float time3 = tock();
+            System.out.println("Time 1 is: "+time1);
 
+            System.out.println("Time 2 is: " + time2);
 
-            System.out.println("Time is: " + huhu);
+            System.out.println("Time 3 is: " + time3);
 
-            System.out.println("Time 2 is"+drdr/1000000 +"\n" + time2);
-            System.out.println();
-
-        /*tick();
-        readData data1 = new readData("sample_input.txt");
-        double gga = sum(data1.getTreesLocation());
-        float huhu1 = tock();
-
-        System.out.println("Time is 1 : " + huhu1);
-        System.out.println("Answer is: "+ gga/1000000);
-        System.out.println();
-
-
-        tick();
-        readData data2 = new readData("sample_input.txt");
-        double ueue = sum(data2.getTreesLocation());
-        float huhu2 = tock();
-
-        System.out.println("Time is 2 : " + huhu2);
-        System.out.println("Answer is: " + ueue/1000000);
-        System.out.println();
-
-        tick();
-        readData data3 = new readData("sample_input.txt");
-        double oaoa = sum(data3.getTreesLocation());
-        float huhu3 = tock();
-
-        System.out.println("Time is 3 : " + huhu3);
-        System.out.println("Answer is: " + oaoa/1000000);
-        System.out.println();
-
-
-        tick();
-        readData data4 = new readData("sample_input.txt");
-        double uua = sum(data4.getTreesLocation());
-        float huhu4 = tock();
-
-        System.out.println("Time is 4 : " + huhu);
-        System.out.println("Answer is: " + uua/1000000);
-        System.out.println();
-
-        tick();
-        readData data5 = new readData("sample_input.txt");
-        double nun = sum(data5.getTreesLocation());
-        float huhu5 = tock();
-
-        System.out.println("Time is 5 : " + huhu5 );
-        System.out.println("Answer is: " + nun/1000000);
-        System.out.println();*/
-
+      /*  }else {
+            System.out.println("No file Entered");
+        }*/
     }
 }
